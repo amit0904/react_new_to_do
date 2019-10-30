@@ -8,7 +8,7 @@ export default class App extends React.Component {
             <div className ="ui segment">
             <h1>React to do App</h1>
             <Input></Input>
-            <Button></Button>
+            <Button onClick = {(e) => {console.log("outside button")} }></Button>
             </div>
             </div>
         );

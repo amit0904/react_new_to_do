@@ -1,32 +1,37 @@
 import React from 'react';
 import Input from './Input';
 import Button from './Button';
+import TODOLIST from './ToDoList'
+
 export default class App extends React.Component {
     
     state = {
-        value: "",
+        itemEntered: "",
         todos: []
-      }
+    }
 
-      onChange = (e) => {
-        this.setState( {value:e.target.value});
-        console.log('TEST');
+    onChange = (e) => {
+
+        this.setState( {itemEntered:e.target.value});
     }
 
     onClick = (e) => {
-        this.setState( {todos:[this.state.value]});
-        this.setState( {value:''});
+        // this.setState((prevState) => {prevState.todos.push(this.state.itemEntered)});
+           this.setState({todos : [...this.state.todos,this.state.itemEntered]})
+        
+        this.setState( {itemEntered:""});
     }
     render(){
-        console.log(this.state.todos);
+        console.dir(this.state.todos)
         return (
             <div className ="ui four column centered grid">
             <div className ="ui segment">
-            <h1>React to do App</h1>
-            <Input onChangeHandler={this.onChange} show={this.state.value}></Input>
-            <Button onClickHandler={this.onClick}></Button>
+                <h1>React to do App</h1>
+                <Input onChangeHandler={this.onChange} show={this.state.itemEntered}/>
+                <Button onClickHandler={this.onClick}/>
+                <TODOLIST itemsList={this.state.todos}/>
             </div>
             </div>
-        );
+        )
     }
 }
